@@ -17,7 +17,7 @@ variable "enable_dns_hostnames" {
     default = true
 }
 
-# optional
+# Optional
 variable "common_tags" {
     default = {}
 }
@@ -34,7 +34,7 @@ variable "public_subnet_cidrs" {
     type = list
     validation {
         condition = length(var.public_subnet_cidrs) == 2
-        error_message = "please provide 2 valid public_subnet_CIDR"   
+        error_message = "Please provide 2 valid public_subnet_CIDR"   
     } 
 }
 
@@ -46,7 +46,7 @@ variable "private_subnet_cidrs" {
     type = list
     validation {
         condition = length(var.private_subnet_cidrs) == 2
-        error_message = "please provide 2 valid private_subnet_CIDR"   
+        error_message = "Please provide 2 valid private_subnet_CIDR"   
     } 
 }
 
@@ -58,7 +58,7 @@ variable "database_subnet_cidrs" {
     type = list
     validation {
         condition = length(var.database_subnet_cidrs) == 2
-        error_message = "please provide 2 valid database_subnet_CIDR"   
+        error_message = "Please provide 2 valid database_subnet_CIDR"   
     } 
 }
 
@@ -95,6 +95,3 @@ variable "vpc_peering_tags" {
     default = {}
 }
 
-variable "public_peering" {
-    default = {}
-}

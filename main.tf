@@ -21,7 +21,7 @@ resource "aws_internet_gateway" "main" {
     {
         Name = local.resource_name
     }
-)
+ )
 }
 
 resource "aws_subnet" "public" {
@@ -114,7 +114,7 @@ resource "aws_nat_gateway" "main" {
     var.common_tags,
     var.public_route_table_tags,
     {
-      Name = "${local.resource_name}-public" # expense-dev-public
+      Name = "${local.resource_name}-public" #expense-dev-public
     }
   )
 }
@@ -127,7 +127,7 @@ resource "aws_nat_gateway" "main" {
     var.common_tags,
     var.private_route_table_tags,
     {
-      Name = "${local.resource_name}-private" # expense-dev-private
+      Name = "${local.resource_name}-private" #expense-dev-private
     }
   )
 }
@@ -140,7 +140,7 @@ resource "aws_nat_gateway" "main" {
     var.common_tags,
     var.database_route_table_tags,
     {
-      Name = "${local.resource_name}-datatbase" # expense-dev-database
+      Name = "${local.resource_name}-database" #expense-dev-database
     }
   )
 }
@@ -153,13 +153,13 @@ resource "aws_route" "public" {
   gateway_id = aws_internet_gateway.main.id
 }
 
-resource "aws_route" "private" {
+resource "aws_route" "private_nat" {
   route_table_id            = aws_route_table.private.id
   destination_cidr_block    = "0.0.0.0/0"
   nat_gateway_id = aws_nat_gateway.main.id
 }
 
-resource "aws_route" "database" {
+resource "aws_route" "database_nat" {
   route_table_id            = aws_route_table.database.id
   destination_cidr_block    = "0.0.0.0/0"
   nat_gateway_id = aws_nat_gateway.main.id
